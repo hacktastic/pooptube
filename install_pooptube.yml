@@ -46,4 +46,5 @@
             copy: src={{ item }} dest=/root/pianobar_scripts/{{ item }} mode=0755
             with_items:
               - pianobar_wrapper.py
+              - crashrestart_audio.sh
 

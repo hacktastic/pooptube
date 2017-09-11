@@ -23,11 +23,9 @@ function check_for_lockfile {
 
 function kickstart_pianobar {
     write_log "Going to kickstart pianobar"
-    ps -ef | egrep "pianobar"
-    ps -ef | egrep "pianobar" | awk '{print $2}' | xargs kill -9
-    python /home/jcoakley/Pianobar-Web/pianobar_web.py >> /var/log/pianobar_web.log 2>&1 &
-    sleep 20s
-    /home/jcoakley/Pianobar-Web/pianobar_scheduler.sh
+    ps -ef | egrep "pianobar$"
+    ps -ef | egrep "pianobar$" | awk '{print $2}' | xargs kill -9
+    /root/pianobar_scripts/pianobar_wrapper.py
 }
 
 function is_running {
