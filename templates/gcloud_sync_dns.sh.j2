@@ -1,0 +1,42 @@
+#!/bin/bash
+
+SERVICE_ACCOUNT_KEY_FILE={{ gcloud_service_account_key_file }}
+PROJECT_NAME={{ gcloud_project_name }}
+ZONE_NAME={{ gcloud_zone_name }}
+DOMAIN_NAME={{ gcloud_domain_name }}
+
+HOSTNAME="${HOSTNAME}.${DOMAIN_NAME}"
+IP_ADDR=$(ifconfig wlan0 | grep 'inet ' | awk '{print $2}')
+
+gcloud auth activate-service-account --key-file $SERVICE_ACCOUNT_KEY_FILE
+gcloud config set project $PROJECT_NAME
+gcloud dns record-sets transaction start --zone=$ZONE_NAME
+
+trap 'rm transaction.yaml' EXIT
+
+# check that there is an existing A record
+existing_rrset=$(gcloud dns record-sets list --zone "${ZONE_NAME}" | grep "${HOSTNAME}")
+existing_rrset_hostname=$(echo "$existing_rrset" | awk '{print $1}')
+existing_rrset_type=$(echo "$existing_rrset" | awk '{print $2}')
+existing_rrset_ttl=$(echo "$existing_rrset" | awk '{print $3}')
+existing_rrset_ip=$(echo "$existing_rrset" | awk '{print $4}')
+
+# if there IS an existing record, delete it first
+if [[ $(echo $existing_rrset | wc -l) -ne 0 ]]; then
+	if [[ $IP_ADDR == $existing_rrset_ip ]]; then
+		echo "Correct A Record is in place. Exiting."
+		exit 0
+	else
+		gcloud dns record-sets transaction remove "${existing_rrset_ip}" --name "${existing_rrset_hostname}" --ttl "${existing_rrset_ttl}" --type "${existing_rrset_type}" --zone "$ZONE_NAME"
+	fi
+fi
+
+if [[ $IP_ADDR == $existing_rrset_ip ]]; then
+	echo "Correct A Record is in place. Exiting."
+	exit 0
+else
+	# add new record
+	gcloud dns record-sets transaction add "${IP_ADDR}" --name "${HOSTNAME}" --ttl "300" --type "A" --zone "${ZONE_NAME}"
+	gcloud dns record-sets transaction execute --zone $ZONE_NAME
+fi
+
