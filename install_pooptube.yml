@@ -2,9 +2,8 @@
 
 - name: Configure pooptube
   hosts: localhost
-  vars:
-          pandora_email: pooptube@gmail.com
-          pandora_pass: poop
+  vars_files:
+    - secrets.yml
   tasks:
           - name: Configure keyboard
             copy: src=keyboard dest=/etc/default/keyboard mode=0755 owner=root group=root
@@ -48,3 +47,12 @@
               - pianobar_wrapper.py
               - crashrestart_audio.sh
 
+
+          - name: Create dir for gcloud scripts
+            file: path=/root/gcloud_scripts state=directory mode=0755
+
+          - name: Render gcloud scripts (from templates)
+            template: src={{ item }}.j2 dest=/root/gcloud_scripts/{{ item }} mode=0755
+            with_items:
+             - gcloud_sync_dns.sh
+             - gcloud-dns-bot.json
