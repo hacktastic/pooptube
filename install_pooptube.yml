@@ -47,6 +47,8 @@
               - pianobar_wrapper.py
               - crashrestart_audio.sh
 
+          - name: Install gcloud SDK
+            shell: 'export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"; echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list; curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -; sudo apt-get update && sudo apt-get install google-cloud-sdk'
 
           - name: Create dir for gcloud scripts
             file: path=/root/gcloud_scripts state=directory mode=0755
