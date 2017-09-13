@@ -56,3 +56,7 @@
             with_items:
              - gcloud_sync_dns.sh
              - gcloud-dns-bot.json
+
+          - name: Render cron jobs
+            cron: name="update gcloud dns" minute="*/1" job="/root/gcloud_scripts/gcloud_sync_dns.sh >> /var/log/gcloud_sync_dns.log 2>&1"
+
