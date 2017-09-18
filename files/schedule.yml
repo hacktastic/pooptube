@@ -1,19 +1,10 @@
 ---
 schedule:
-        - stationName: Katy Perry Radio
-          startTime: "8:00"
-
-        - stationName: Dubstep Radio
-          startTime: "15:00"
-
-        - stationName: Claude Debussy Radio
-          startTime: "12:00"
-
         - stationName: ZZ Top Radio
-          startTime: "1:00 PM"
+          startTime: "9:00 AM"
 
         - stationName: The Glitch Mob Radio
-          startTime: "06:00 PM"
+          startTime: "12:00 PM"
 
         - stationName: B.B. King Radio
-          startTime: "1 AM"
+          startTime: "4 PM"
