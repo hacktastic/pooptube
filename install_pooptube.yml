@@ -56,7 +56,7 @@
               - crashrestart_audio.sh
 
           - name: Render crashrestart audio cron job
-            cron: name="update gcloud dns" minute="*/1" job="/root/pianobar_scripts/crashrestart_audio.sh >> /var/log/crashrestart_audio.sh 2>&1"
+            cron: name="Crash/Restart Audio" minute="*/1" job="/root/pianobar_scripts/crashrestart_audio.sh >> /var/log/crashrestart_audio.sh 2>&1"
 
           - name: Install and configure gcloud DNS
             include: install_gcloud_dns.yml
