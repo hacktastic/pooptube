@@ -1,0 +1,16 @@
+---
+- name: Install gcloud SDK
+  shell: 'export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"; echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list; curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -; sudo apt-get update && sudo apt-get install -y google-cloud-sdk'
+
+- name: Create dir for gcloud scripts
+  file: path=/root/gcloud_scripts state=directory mode=0755
+
+- name: Render gcloud scripts (from templates)
+  template: src={{ item }}.j2 dest=/root/gcloud_scripts/{{ item }} mode=0755
+  with_items:
+    - gcloud_sync_dns.sh
+    - gcloud-dns-bot.json
+
+- name: Render gcloud DNS cron job
+  cron: name="update gcloud dns" minute="*/1" job="/root/gcloud_scripts/gcloud_sync_dns.sh >> /var/log/gcloud_sync_dns.log 2>&1"
+
