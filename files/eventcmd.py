@@ -65,7 +65,7 @@ def get_timestamp(naive_time):
     # if the timestamp has "PM", add 12 to the hour value
     if hour != None:
         hour = int(hour)
-        if daypart == 'PM':
+        if daypart == 'PM' and hour < 12:
             hour += 12
     # if no minute value found, set minute=0; otherwise, convert minute to int
     if minute != None:
