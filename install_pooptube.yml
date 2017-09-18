@@ -20,6 +20,9 @@
               - pianobar
               - mlocate
 
+          - name: Install pip packages
+            shell: pip3 install pyyaml
+
           - name: Create pianobar config dir
             file: path=/root/.config/pianobar state=directory mode=0755 owner=root group=root
 
@@ -31,6 +34,9 @@
 
           - name: Force 3.5mm jack audio output
             shell: amixer cset numid=3 1
+
+          - name: Set Volume to 100%
+            shell: amixer -c 0 set PCM playback 100% unmute
 
           - name: Create dir for pianobar scripts
             file: path=/root/pianobar_scripts state=directory mode=0755
@@ -48,7 +54,7 @@
               - crashrestart_audio.sh
 
           - name: Install gcloud SDK
-            shell: 'export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"; echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list; curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -; sudo apt-get update && sudo apt-get install google-cloud-sdk'
+            shell: 'export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"; echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list; curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -; sudo apt-get update && sudo apt-get install -y google-cloud-sdk'
 
           - name: Create dir for gcloud scripts
             file: path=/root/gcloud_scripts state=directory mode=0755
@@ -59,6 +65,9 @@
              - gcloud_sync_dns.sh
              - gcloud-dns-bot.json
 
-          - name: Render cron jobs
+          - name: Render gcloud DNS cron job
             cron: name="update gcloud dns" minute="*/1" job="/root/gcloud_scripts/gcloud_sync_dns.sh >> /var/log/gcloud_sync_dns.log 2>&1"
+
+          - name: Render creashrestart audio cron job
+            cron: name="update gcloud dns" minute="*/1" job="/root/pianobar_scripts/crashrestart_audio.sh >> /var/log/crashrestart_audio.sh 2>&1"
 
