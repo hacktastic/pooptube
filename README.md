@@ -1,10 +1,10 @@
 # pooptube
 
-Pooptube is a standalone music player that runs on a raspberry pi. To set up from fresh pi, follow the Installation instructions below.
+Pooptube is a standalone music player that runs on a raspberry pi. It uses your own Pandora account to stream music from the "unofficial Pandora API" via the Pianobar app. See: https://github.com/PromyLOPh/pianobar
 
-Installation
+Pi Prerequisites
 ============
-1. install raspbian
+1. install raspbian OS
 2. boot to the GUI
 3. run the Raspberry Pi Configuration tool:
 * System
@@ -21,12 +21,40 @@ Installation
   * set WiFi country [example: "US United States"]
 4. connect to local wifi
 5. run <code>apt-get update</code>
-6. run <code>apt-get install -y ansible</code>
-7. clone this repo
-8. create an ansible-vault file to store your Pandora username and password (see below)
-9. run <code>ansible-playbook install_pooptube.yml --ask-vault-pass --become </code>
+6. run <code>apt-get install -y ansible git</code>
+7. git clone this repo
 
-This will install pianobar along with some configuration files (at <code>/root/.config/pianobar/</code>) and helper scripts (at <code>/root/pianobar_scripts/</code>), as well as configure root cron to keep audio playing.
+Getting Started
+===============
+Once you have cloned this repo to your Pi's filesystem, cd into the top-level directory. The first thing you need to do is remove my secrets.yml file and create one with your own Pandora account credentials, encrypted with your own ansible-vault password:
+<pre><code>pi@pi001:~/pooptube $ rm secrets.yml 
+
+pi@pi001:~/pooptube $ vim secrets.yml
+pi@pi001:~/pooptube $ cat secrets.yml 
+---
+pandora_email: zer0_cool@hack_the_planet.com
+pandora_pass: password1
+
+pi@pi001:~/pooptube $ ansible-vault encrypt secrets.yml 
+Vault password: 
+Encryption successful
+
+pi@pi001:~/pooptube $ cat secrets.yml 
+$ANSIBLE_VAULT;1.1;AES256
+63376637663032373037646561643032623536393635366536306539356266343131383834373937
+73037646561643032623536393635366536306539331383834373937562663431313838343739372
+39656537636366337663766303233343337326664343636623730633830353032653464646464373
+63373734396432356532366332623564365353433646361383363323234623965363832623930361
+3161643235363036610a353863376239333263613434646562363538373563613831623665326539
+646537343039373562356163386631235363562386166616662620a6665653736396464313239653
+61376638396533613834616362313036365666664393033646337613436313463333863376637663
+63376637663032373037646561643032623536393635366536306539356266343131383834373937</code></pre>
+
+Now, run the ansible-playbook command to install our app:
+<code>ansible-playbook install_pooptube.yml --ask-vault-pass --become </code>
+This will prompt you for the password you just used to encrypt your secrets.yml file.
+
+The playbook will install pianobar along with some configuration files (at <code>/root/.config/pianobar/</code>) and helper scripts (at <code>/root/pianobar_scripts/</code>), as well as configure root cron to keep audio playing.
 
 Logs will stream to <code>/var/log/pianobar.log</code>
 
