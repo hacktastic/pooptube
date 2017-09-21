@@ -3,7 +3,8 @@
 - name: Configure pooptube
   hosts: localhost
   vars:
-    - install_gcloud_dns: False
+    - install_gcloud_dns: True
+    - install_netdata_monitoring: True
   vars_files:
     - secrets.yml
   tasks:
@@ -64,4 +65,9 @@
           - name: Install and configure gcloud DNS
             include: install_gcloud_dns.yml
             when: install_gcloud_dns
+
+          - name: Install and configure netdata monitoring
+            include: install_netdata_monitoring.yml
+            when: install_netdata_monitoring
+
 
