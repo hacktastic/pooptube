@@ -17,7 +17,7 @@
             apt: upgrade=dist
 
           - name: Install motd
-            file: src=motd dest=/etc/motd mode=0755
+            copy: src=motd dest=/etc/motd mode=0755
 
           - name: Install packages
             apt: name={{ item }} state=present
