@@ -6,7 +6,7 @@
   shell: "/tmp/kickstart.sh --dont-wait >> /var/log/netdata-kickstart.log 2>&1"
 
 - name: Set netdata to bind to localhost only
-  lineinfile: name=/etc/netdata/netdata.conf regexp="bind to =.*" line="bind to = 127.0.0.1"
+  lineinfile: name=/etc/netdata/netdata.conf insertafter="\[web\]" line="bind to = 127.0.0.1"
 
 - name: Install nginx
   apt: name=nginx-light state=present
