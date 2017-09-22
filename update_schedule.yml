@@ -1,0 +1,8 @@
+---
+
+- name: Update pooptube schedule
+  hosts: "{{ hosts }}"
+  tasks:
+    - name: Upload pianobar schedule
+      copy: src=schedule.yml dest=/root/.config/pianobar/schedule.yml mode=0755
+
