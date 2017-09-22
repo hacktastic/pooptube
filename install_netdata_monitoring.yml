@@ -32,3 +32,6 @@
 - name: Restart nginx
   service: name=nginx state=restarted
 
+- name: Restart netdata
+  service: name=netdata state=restarted
+
