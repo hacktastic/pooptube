@@ -1,9 +1,12 @@
 ---
+- name: Download netdata monitoring framework
+  get_url: url=https://my-netdata.io/kickstart.sh dest=/tmp/kickstart.sh mode=0755
+
 - name: Install netdata monitoring framework
-  shell: 'bash <(curl -Ss https://my-netdata.io/kickstart.sh) --dont-wait'
+  shell: "/tmp/kickstart.sh --dont-wait >> /var/log/netdata-kickstart.log 2>&1"
 
 - name: Set netdata to bind to localhost only
-  lineinfile: path=/etc/netdata/netdata.conf regexp="bind to =.*" line="bind to = 127.0.0.1"
+  lineinfile: name=/etc/netdata/netdata.conf regexp="bind to =.*" line="bind to = 127.0.0.1"
 
 - name: Install nginx
   apt: name=nginx-light state=present
@@ -13,6 +16,9 @@
 
 - name: Install nginx netdata conf
   template: src=nginx-netdata.conf.j2 dest=/etc/nginx/sites-enabled/nginx-netdata.conf mode=0755
+
+- name: Create nginx ssl directory
+  file: path=/etc/nginx/ssl state=directory
 
 - name: Install nginx SSL cert and key
   template: src={{ item }}.j2 dest=/etc/nginx/ssl/{{ item }} mode=0755
