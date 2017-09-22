@@ -99,12 +99,86 @@ gcloud_service_account_key: |
     "token_uri": "https://accounts.google.com/o/oauth2/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dns-bot%hack_the_planet.iam.gserviceaccount.com"
-  }</pre></code>
+  }
+  
+  
+netdata_nginx_cert: |
+  -----BEGIN CERTIFICATE-----
+  MIIDYDCCAkigAwIBAgIJALzSQ6U17UgkMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV
+  BAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBX
+  aWRnaXRzIFB0eSBMdGQwHhcNMTcwOTIyMDA1MjIxWhcNMTgwOTIyMDA1MjIxWjBF
+  MQswCQYDVQQGEwJBVTETMBEGA1UECAwKU29tZS1TdGF0ZTEhMB8GA1UECgwYSW50
+  ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+  CgKCAQEA1hn3QAAtVZHAYGGM5N0synbBF07c8sieGvU84ZLL0gvg2o6dOVccj3Bi
+  BQAMk1583qKQaOJ2fJOA+TtB2NOE0or4cjUMOtf+g9z0OdpmIFr9NAn40ILKJlf2
+  R70/ogYEdYT3tnVr/wp1XnKVhONqbo3epsiP7wBqah/fJWOubsWKyDnFD0m80sNz
+  xAJ7EHH9qX+xjGkYBVogTF8dL8HMceeD79a5ZhiyAP8jhUXHxiTQQ1y6LA9SuyqW
+  i/A0rgXzdgz95VSENREp42r86mk4VtIPLsuHSFBjIp9JvEye5RN8Yoj2zQaqTosd
+  r3CHt8M4WuJ6Fo8iCK9eiUshP4LnZwIDAQABo1MwUTAdBgNVHQ4EFgQUrru6aNU0
+  HVQwjZwbPUhby0KLqb0wHwYDVR0jBBgwFoAUrru6aNU0HVQwjZwbPUhby0KLqb0w
+  DwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAKZrzkecnhZZfTF67
+  3H8q4ZMMob+mzhFsqqaRNyZ/WeJhE0c4L5upxyCx72CRcrjzZsOIrAYxtDbhfXJ5
+  /xKmGeMTuGZ+opl/T/RJVnF/TqC0efPrhW1kZtTUqMHqpQkQghfYK3ucvkTaOg6n
+  1dmZWkKfcaOsLx3ukWRyQok5RYiXd4Qg7TbSbBpdCqJ2i+LvaB4k+BpNi4KQ2qvq
+  DYvjc0YAA6yZJzBBv99WQc1i3S9pWpPHXvWQ121aRlNpLVYeNBwYq7jtsfzSFlRN
+  9YuhOOB/GZG7zO70d1KkOG0HDzVsG0X6g+xqnDWlnr392PMqtRrLLR9SJl4TRr/f
+  uNEsBg==
+  -----END CERTIFICATE-----
 
-The gcloud settings are optional, what's important are the pandora email and password.
+netdata_nginx_key: |
+  -----BEGIN PRIVATE KEY-----
+  MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDWGfdAAC1VkcBg
+  YYzk3SzKdsEXTtzyyJ4a9TzhksvSC+Dajp05VxyPcGIFAAyTXnzeopBo4nZ8k4D5
+  O0HY04TSivhyNQw61/6D3PQ52mYgWv00CfjQgsomV/ZHvT+iBgR1hPe2dWv/CnVe
+  cpWE42pujd6myI/vAGpqH98lY65uxYrIOcUPSbzSw3PEAnsQcf2pf7GMaRgFWiBM
+  Xx0vwcxx54Pv1rlmGLIA/yOFRcfGJNBDXLosD1K7KpaL8DSuBfN2DP3lVIQ1ESnj
+  avzqaThW0g8uy4dIUGMin0m8TJ7lE3xiiPbNBqpOix2vcIe3wzha4noWjyIIr16J
+  SyE/gudnAgMBAAECggEAZICT2+s5XK2qjJO+O8DHQdM1GOfgN+eMsELmbU0neFYz
+  GuVPUJdfxMWQfaBkRtlX7HqLJ3EHBbuIE3aJlmrUMrEhpxrXvtedlfCmhHHM9us/
+  aKo1rkt28UDhTxO7Rydj+HaOgYvlQjd6mPdY0KSgVX0rQ0dqqVqcmWyUp0x/mWct
+  xzEm9B1sNCSYCWkF9U05IZTPb6aB6f5bleN9UkX26VQtpHyyOf4TgvkQTXbCfueP
+  magsPwvLeqg0FH0qSdpJBt9kSKqxG4A5zIb6zewaC7GLnroNgeKQUUZxsVvZkoHT
+  1IJ65lydx8Fy2onWCG5WjHb4W1ROXK7179JLJLAloQKBgQDt44XnxuMLUMcTs0v4
+  RjTy07Pi7aLlLzO4fsWjbeuUuh0Qvi21mYuOmt/+JgzzRJVWzEgp5eRaDSJ43JJV
+  L9akZpxhoGIaYOZ2aaY3EarLs34u5TO/GjYpkKWltPCxJu0JmHmevpg910Qr5QDd
+  rj0Ru6F71LXhTbU2OG7GjKEE/QKBgQDmZtM8IusZ4OjvV+byYKE+xU22au6pMjdE
+  psNJ+kMNSNt3rphZdDVrBVr/55Fey03qBvFdYwazypfrpqKvRSlkr7Tz8Xma36Om
+  fOyfD7UjT7esF+IsZ1pqIqUaj4SUUWCtyQrJ62s6IonLLfRej0vGvG7JlIZS/vgB
+  YbwTaMtdMwKBgEDY2eLBs5idD3eOU7I9KSfcj9fXYaVKBbZQUH3pc+OaDFxJC1rK
+  nWFlVJQKOVODKZZ8n1tUgLgPhosdzYINRVyRYCW4u6VnLsuupxGx7jYTGt2bu0xn
+  z8Xq2UzfkxEnhEwuVVDxsbyB1uKETYUgfyM7W5zO8jmVnkVGguP659XdAoGAT5fW
+  AUBO13HLBmPndHPNQFIItqvaJrkiPqUdccDyyPQSXRYDq2Np0L7Y4O6uWYECOYaM
+  eyZqelHSiaXXLZVG53GLoXoZ+FapwioF1C0o9jnjyZ+2koBhy6iMQNCzjElQjLiW
+  8YpSUJL95yLI+KGoG8+ctiaJAML0CgYpYssg9eECgYA/CIs3BUWBAXlvtMsRQPzv
+  0VXBoRjqzwrxGGFgeqHpB4zzgLGluNHoX3eXChSs5aKIbsUitSgo7qmrAcnA4RcH
+  IPvWpMHqGpcYvc9vXKD5KhZc2jxEa9lK7cO7vw/J10jZgLIyFundAio4GdU9XgGW
+  iOt3EMq63HKQfxMMqiiGfA==
+  -----END PRIVATE KEY-----
+
+nginx_password: zer0_cool:$apr1$uxEyjZDV$ZTV9KYM4JDYekG4v3QHy70</pre></code>
+
+The gcloud and netdata settings are optional, what's important are the pandora email and password.
 
 A good ansible-vault tutorial is here: https://gist.github.com/tristanfisher/e5a306144a637dc739e7
 
 Automatic gcloud DNS Registration (optional)
 =================================
 For ease of SSH'ing into the hosts on my local network, I have rigged up a small python script to register the hostname of each pi as a CNAME record in my private gcloud domain. Relevant config should be stored in ansible-vault (see above).
+
+Netdata (optional)
+==================
+You may optionally install the netdata monitoring tool. This installer (1) downloads the automatic installer, (2) executes the installer with default settings, (3) slaps an nginx frontend to handle SSL and basic-auth. To generate the passwords file for nginx, follow this guide: 
+<pre><code>$ printf "zer0_cool:$(openssl passwd -apr1)" > /etc/nginx/passwords
+Password: 
+Verifying - Password: 
+$ cat /etc/nginx/passwords 
+zer0_cool:$apr1$uxEyjZDV$ZTV9KYM4JDYekG4v3QHy70
+</code></pre>
+
+More details on netdata can be found here: 
+
+https://github.com/firehol/netdata
+
+https://github.com/firehol/netdata/wiki
+
+https://github.com/firehol/netdata/wiki/Running-behind-nginx
