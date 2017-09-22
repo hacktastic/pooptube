@@ -1,7 +1,8 @@
 ---
-
+# run like this: ansible-playbook -i inventory.yml update_schedule.yml -e "hosts=pooptube001.hacktheplanet.com" -u pi -K -k
 - name: Update pooptube schedule
   hosts: "{{ hosts }}"
+  become: True
   tasks:
     - name: Upload pianobar schedule
       copy: src=schedule.yml dest=/root/.config/pianobar/schedule.yml mode=0755
