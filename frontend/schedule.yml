@@ -1,0 +1,10 @@
+---
+schedule:
+        - stationName: ZZ Top Radio
+          startTime: "9:00 AM"
+
+        - stationName: The Glitch Mob Radio
+          startTime: "12:30 PM"
+
+        - stationName: B.B. King Radio
+          startTime: "4 PM"

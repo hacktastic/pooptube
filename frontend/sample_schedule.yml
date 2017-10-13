@@ -1,0 +1,4 @@
+schedule:
+- {startTime: '09:00 AM', stationName: ZZ Top Radio}
+- {startTime: '04:00 PM', stationName: B.B. King Radio}
+- {startTime: '12:30 PM', stationName: The Glitch Mob Radio}

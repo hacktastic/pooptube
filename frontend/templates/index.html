@@ -1,0 +1,40 @@
+<html>
+<head></head>
+<body>
+  <h1>Pooptube</h1>
+  <p>Building: {{ building }}</p>
+  <p>Floor: {{ floor }}</p>
+  <p>{{ gender }} Room #{{ num }}</p>
+  {{ stations }}<br>
+  {{ schedule }}
+  <div style="width: 33%">
+    <form action="/new_schedule" method="post">
+      {% for item in schedule %}
+      <select name="hour-{{ loop.index }}">
+        {% for h in range(0, 13) %}
+          <option value="{{ h }}" {% if item.get('start_hour') == h %}selected{% endif %}>{{ h }}</option>
+        {% endfor %}
+      </select>
+      <select name="minute-{{ loop.index }}">
+        {% for m in range(0, 60) %}
+          <option value="{{ m }}" {% if item.get('start_minute') == m %}selected{% endif %}>{{ m }}</option>
+        {% endfor %}
+      </select>
+      <select name="daypart-{{ loop.index }}">
+          <option value="AM" {% if item.get('start_daypart') == "AM"%}selected{% endif %}>AM</option>
+          <option value="PM" {% if item.get('start_daypart') == "PM"%}selected{% endif %}>PM</option>
+      </select>
+      <select name="station-{{ loop.index }}">
+        {% for station in stations %}
+          <option value="{{ station }}" {% if item.get('station_name') == station %}selected{% endif %}>{{ station }}</option>
+        {% endfor %}
+      </select>
+      <button value="delete-{{ loop.index }}">Delete</button>
+      <br>
+      {% endfor %}
+      <button value="add_row" style="width: 100%">Add</button>
+      <input type="Submit"/>
+    </form>
+  </div>
+</body>
+</html>
